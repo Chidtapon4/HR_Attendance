@@ -116,6 +116,29 @@ body {
 .icon-ok { background: var(--primary); }
 .icon-bad { background: var(--bad); }
 
+/* กล่องแสดง user id */
+.uid-box {
+  width: 100%;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.uid-label { font-size: 13px; color: var(--muted); text-align: center; }
+#uid-value {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 13px;
+  word-break: break-all;
+  background: #fff;
+  padding: 8px 10px;
+  border-radius: 8px;
+  width: 100%;
+  text-align: center;
+}
+
 #success-title { font-size: 20px; }
 #success-detail { color: var(--muted); font-size: 15px; line-height: 1.5; }
 #error-msg { color: var(--text); font-size: 15px; line-height: 1.5; }

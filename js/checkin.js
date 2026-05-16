@@ -29,6 +29,9 @@
     successDetail: document.getElementById('success-detail'),
     doneBtn: document.getElementById('done-btn'),
     selfieInput: document.getElementById('selfie-input'),
+    uidBox: document.getElementById('uid-box'),
+    uidValue: document.getElementById('uid-value'),
+    copyUidBtn: document.getElementById('copy-uid-btn'),
   };
 
   // --- สลับหน้า ---
@@ -40,6 +43,13 @@
 
   function showError(msg) {
     el.errorMsg.textContent = msg;
+    // ถ้ารู้ userId แล้ว ให้แสดงไว้ก๊อปไปลงทะเบียน (ช่วยตอนตั้งระบบครั้งแรก)
+    if (userId) {
+      el.uidValue.textContent = userId;
+      el.uidBox.classList.remove('hidden');
+    } else {
+      el.uidBox.classList.add('hidden');
+    }
     show('error');
   }
 
@@ -232,6 +242,19 @@
 
   el.actionBtn.addEventListener('click', onAction);
   el.retryBtn.addEventListener('click', start);
+  el.copyUidBtn.addEventListener('click', function () {
+    var text = el.uidValue.textContent;
+    var done = function () { el.copyUidBtn.textContent = 'คัดลอกแล้ว'; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { done(); });
+    } else {
+      var r = document.createRange();
+      r.selectNode(el.uidValue);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(r);
+      done();
+    }
+  });
   el.doneBtn.addEventListener('click', function () {
     if (window.APP_CONFIG.DEV_MODE) { loadStatus(); return; }
     if (typeof liff !== 'undefined' && liff.isInClient && liff.isInClient()) {
