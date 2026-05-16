@@ -1,0 +1,131 @@
+:root {
+  --bg: #f0f2f5;
+  --card: #ffffff;
+  --primary: #06c755;
+  --primary-dark: #04a548;
+  --text: #1a1a1a;
+  --muted: #8a8f98;
+  --bad: #e0364a;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, "Segoe UI", "Helvetica Neue", "Noto Sans Thai", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 420px;
+  padding: 28px 22px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.hidden { display: none !important; }
+
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+
+/* หัวข้อพนักงาน */
+.head { width: 100%; }
+.greet { color: var(--muted); font-size: 14px; }
+.head h1 { font-size: 24px; margin-top: 2px; }
+.dept { color: var(--muted); font-size: 14px; margin-top: 2px; }
+
+/* นาฬิกา */
+.clock {
+  margin: 6px 0;
+  text-align: center;
+}
+#clock-time {
+  font-size: 40px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+}
+#clock-date { color: var(--muted); font-size: 14px; }
+
+/* สรุปวันนี้ */
+.summary {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  background: var(--bg);
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+.summary-row .val { font-weight: 600; }
+.tag-late { color: var(--bad); }
+.tag-ok { color: var(--primary-dark); }
+
+/* ปุ่ม */
+.btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .05s, background .15s;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:disabled { background: var(--muted); cursor: not-allowed; }
+.btn-out { background: #ff8a00; color: #fff; }
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid #dde0e4;
+}
+
+.status-line {
+  font-size: 13px;
+  color: var(--muted);
+  min-height: 18px;
+}
+
+/* ไอคอนผล */
+.icon-ok, .icon-bad {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px; font-weight: 700; color: #fff;
+}
+.icon-ok { background: var(--primary); }
+.icon-bad { background: var(--bad); }
+
+#success-title { font-size: 20px; }
+#success-detail { color: var(--muted); font-size: 15px; line-height: 1.5; }
+#error-msg { color: var(--text); font-size: 15px; line-height: 1.5; }
+
+/* สปินเนอร์ */
+.spinner {
+  width: 36px; height: 36px;
+  border: 4px solid #e3e6ea;
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

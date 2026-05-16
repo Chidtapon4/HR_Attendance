@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>ลงเวลาเข้า-ออกงาน</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="card">
+    <!-- สถานะกำลังโหลด -->
+    <section id="loading" class="state">
+      <div class="spinner"></div>
+      <p>กำลังเชื่อมต่อ...</p>
+    </section>
+
+    <!-- ข้อผิดพลาด -->
+    <section id="error" class="state hidden">
+      <div class="icon-bad">!</div>
+      <p id="error-msg"></p>
+      <button id="retry-btn" class="btn btn-ghost">ลองใหม่</button>
+    </section>
+
+    <!-- หน้าหลักลงเวลา -->
+    <section id="main" class="state hidden">
+      <header class="head">
+        <p class="greet">สวัสดี</p>
+        <h1 id="emp-name">—</h1>
+        <p id="emp-dept" class="dept"></p>
+      </header>
+
+      <div class="clock">
+        <div id="clock-time">--:--:--</div>
+        <div id="clock-date"></div>
+      </div>
+
+      <div id="today-summary" class="summary"></div>
+
+      <button id="action-btn" class="btn btn-primary">ลงเวลา</button>
+      <p id="status-line" class="status-line"></p>
+    </section>
+
+    <!-- สำเร็จ -->
+    <section id="success" class="state hidden">
+      <div class="icon-ok">&#10003;</div>
+      <h2 id="success-title">สำเร็จ</h2>
+      <p id="success-detail"></p>
+      <button id="done-btn" class="btn btn-ghost">เสร็จสิ้น</button>
+    </section>
+  </main>
+
+  <!-- กล้องถ่ายเซลฟี่ (ซ่อนไว้ ใช้เมื่อ require_selfie) -->
+  <input type="file" id="selfie-input" accept="image/*" capture="user" class="hidden" />
+
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/liff-init.js"></script>
+  <script src="js/checkin.js"></script>
+</body>
+</html>
