@@ -10,6 +10,6 @@ window.APP_CONFIG = {
   API_URL: 'https://script.google.com/macros/s/AKfycbxJFTpQ8fr7FwsB9rYX9Cl9fafKXdk3s_km1aJoORxPTdSMX3-CPG56i-QwpvzP4IaYmw/exec',
 
   // โหมดทดสอบบนเครื่อง (ไม่ผ่าน LINE) — ตั้ง true เพื่อใช้ MOCK_USER_ID แทน
-  DEV_MODE: true,
+  DEV_MODE: false,
   MOCK_USER_ID: 'Udev0000000000000000000000000000',
 };
