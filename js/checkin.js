@@ -29,9 +29,6 @@
     successDetail: document.getElementById('success-detail'),
     doneBtn: document.getElementById('done-btn'),
     selfieInput: document.getElementById('selfie-input'),
-    uidBox: document.getElementById('uid-box'),
-    uidValue: document.getElementById('uid-value'),
-    copyUidBtn: document.getElementById('copy-uid-btn'),
     registerLink: document.getElementById('register-link'),
     navApprove: document.getElementById('nav-approve'),
   };
@@ -45,15 +42,9 @@
 
   function showError(msg) {
     el.errorMsg.textContent = msg;
-    // ยังไม่ได้ลงทะเบียน -> โชว์ปุ่มลงทะเบียน + user id (ช่วยตอนตั้งระบบ)
+    // ยังไม่ได้ลงทะเบียน -> โชว์ปุ่มลงทะเบียน
     var notRegistered = msg && msg.indexOf('ลงทะเบียน') >= 0;
     el.registerLink.classList.toggle('hidden', !notRegistered);
-    if (userId && notRegistered) {
-      el.uidValue.textContent = userId;
-      el.uidBox.classList.remove('hidden');
-    } else {
-      el.uidBox.classList.add('hidden');
-    }
     show('error');
   }
 
@@ -247,19 +238,6 @@
 
   el.actionBtn.addEventListener('click', onAction);
   el.retryBtn.addEventListener('click', start);
-  el.copyUidBtn.addEventListener('click', function () {
-    var text = el.uidValue.textContent;
-    var done = function () { el.copyUidBtn.textContent = 'คัดลอกแล้ว'; };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, function () { done(); });
-    } else {
-      var r = document.createRange();
-      r.selectNode(el.uidValue);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(r);
-      done();
-    }
-  });
   el.doneBtn.addEventListener('click', function () {
     if (window.APP_CONFIG.DEV_MODE) { loadStatus(); return; }
     if (typeof liff !== 'undefined' && liff.isInClient && liff.isInClient()) {
