@@ -143,6 +143,145 @@ body {
 #success-detail { color: var(--muted); font-size: 15px; line-height: 1.5; }
 #error-msg { color: var(--text); font-size: 15px; line-height: 1.5; }
 
+/* ฟอร์ม */
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+.field > span { font-size: 14px; color: var(--muted); }
+.req { color: var(--bad); }
+.field input, .field select, .field textarea {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 12px 12px;
+  border: 1px solid #dde0e4;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  width: 100%;
+}
+.field textarea { resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* แท็บ */
+.tabs {
+  display: flex;
+  width: 100%;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 4px;
+  gap: 4px;
+}
+.tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+.tab.active { background: #fff; color: var(--primary-dark); }
+.tab-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* หัวข้อย่อย */
+.section-title {
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+  margin-top: 6px;
+}
+
+/* รายการคำขอ */
+.req-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.req-item {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.req-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.req-title { font-weight: 600; font-size: 15px; }
+.req-sub { font-size: 13px; color: var(--muted); }
+.req-actions { display: flex; gap: 8px; margin-top: 4px; }
+.btn-sm {
+  flex: 1;
+  padding: 9px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
+.btn-sm:disabled { opacity: .5; }
+.btn-ok { background: var(--primary); }
+.btn-bad { background: var(--bad); }
+
+/* ป้ายสถานะ */
+.badge {
+  font-size: 12px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.badge-pending { background: #fff1d6; color: #b07400; }
+.badge-ok { background: #d8f5e3; color: var(--primary-dark); }
+.badge-bad { background: #fbdde1; color: var(--bad); }
+
+.empty {
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+  padding: 12px;
+}
+
+/* เมนูนำทาง */
+.nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+.nav a {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--bg);
+  color: var(--text);
+}
+
 /* สปินเนอร์ */
 .spinner {
   width: 36px; height: 36px;

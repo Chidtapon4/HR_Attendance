@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>ขอลา / ขอ OT</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="card">
+    <section id="loading" class="state">
+      <div class="spinner"></div>
+      <p>กำลังเชื่อมต่อ...</p>
+    </section>
+
+    <section id="error" class="state hidden">
+      <div class="icon-bad">!</div>
+      <p id="error-msg"></p>
+      <button id="retry-btn" class="btn btn-ghost">ลองใหม่</button>
+    </section>
+
+    <section id="main" class="state hidden">
+      <header class="head">
+        <h1>ขอลา / ขอ OT</h1>
+        <p id="quota-line" class="dept"></p>
+      </header>
+
+      <!-- แท็บ -->
+      <div class="tabs">
+        <button class="tab active" data-tab="leave">ขอลา</button>
+        <button class="tab" data-tab="ot">ขอ OT</button>
+      </div>
+
+      <!-- ฟอร์มลา -->
+      <div id="tab-leave" class="tab-panel">
+        <label class="field">
+          <span>ประเภทการลา <b class="req">*</b></span>
+          <select id="lv-type">
+            <option value="sick">ลาป่วย</option>
+            <option value="personal">ลากิจ</option>
+            <option value="vacation">ลาพักร้อน</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>วันที่เริ่ม <b class="req">*</b></span>
+          <input type="date" id="lv-from" />
+        </label>
+        <label class="field">
+          <span>วันที่สิ้นสุด <b class="req">*</b></span>
+          <input type="date" id="lv-to" />
+        </label>
+        <label class="field">
+          <span>เหตุผล <b class="req">*</b></span>
+          <textarea id="lv-reason" rows="2" placeholder="ระบุเหตุผล"></textarea>
+        </label>
+        <button id="lv-submit" class="btn btn-primary">ส่งคำขอลา</button>
+      </div>
+
+      <!-- ฟอร์ม OT -->
+      <div id="tab-ot" class="tab-panel hidden">
+        <label class="field">
+          <span>วันที่ทำ OT <b class="req">*</b></span>
+          <input type="date" id="ot-date" />
+        </label>
+        <label class="field">
+          <span>จำนวนชั่วโมง <b class="req">*</b></span>
+          <input type="number" id="ot-hours" min="0.5" max="24" step="0.5" placeholder="เช่น 2" />
+        </label>
+        <label class="field">
+          <span>เหตุผล <b class="req">*</b></span>
+          <textarea id="ot-reason" rows="2" placeholder="ระบุงานที่ทำ"></textarea>
+        </label>
+        <button id="ot-submit" class="btn btn-primary">ส่งคำขอ OT</button>
+      </div>
+
+      <p id="status-line" class="status-line"></p>
+
+      <!-- คำขอของฉัน -->
+      <h2 class="section-title">คำขอของฉัน</h2>
+      <div id="my-requests" class="req-list"></div>
+    </section>
+  </main>
+
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/liff-init.js"></script>
+  <script src="js/leave.js"></script>
+</body>
+</html>

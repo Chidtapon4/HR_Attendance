@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>อนุมัติคำขอ</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="card">
+    <section id="loading" class="state">
+      <div class="spinner"></div>
+      <p>กำลังเชื่อมต่อ...</p>
+    </section>
+
+    <section id="error" class="state hidden">
+      <div class="icon-bad">!</div>
+      <p id="error-msg"></p>
+      <button id="retry-btn" class="btn btn-ghost">ลองใหม่</button>
+    </section>
+
+    <section id="main" class="state hidden">
+      <header class="head">
+        <h1>อนุมัติคำขอ</h1>
+        <p class="dept">รายการที่รอการอนุมัติจากคุณ</p>
+      </header>
+
+      <!-- พนักงานรอลงทะเบียน (เฉพาะ HR) -->
+      <div id="emp-section" class="hidden">
+        <h2 class="section-title">พนักงานใหม่รออนุมัติ</h2>
+        <div id="emp-list" class="req-list"></div>
+      </div>
+
+      <!-- คำขอลา / OT -->
+      <h2 class="section-title">คำขอลา / OT</h2>
+      <div id="req-list" class="req-list"></div>
+
+      <button id="refresh-btn" class="btn btn-ghost">รีเฟรช</button>
+    </section>
+  </main>
+
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/liff-init.js"></script>
+  <script src="js/approve.js"></script>
+</body>
+</html>

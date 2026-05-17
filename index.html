@@ -18,6 +18,7 @@
     <section id="error" class="state hidden">
       <div class="icon-bad">!</div>
       <p id="error-msg"></p>
+      <a id="register-link" href="register.html" class="btn btn-primary hidden">ลงทะเบียนพนักงานใหม่</a>
       <div id="uid-box" class="uid-box hidden">
         <p class="uid-label">LINE user id ของคุณ (ก๊อปไปใส่ในชีต Employees):</p>
         <code id="uid-value"></code>
@@ -43,6 +44,11 @@
 
       <button id="action-btn" class="btn btn-primary">ลงเวลา</button>
       <p id="status-line" class="status-line"></p>
+
+      <nav class="nav">
+        <a href="leave.html">ขอลา / ขอ OT</a>
+        <a id="nav-approve" href="approve.html" class="hidden">อนุมัติคำขอ</a>
+      </nav>
     </section>
 
     <!-- สำเร็จ -->

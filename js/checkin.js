@@ -32,6 +32,8 @@
     uidBox: document.getElementById('uid-box'),
     uidValue: document.getElementById('uid-value'),
     copyUidBtn: document.getElementById('copy-uid-btn'),
+    registerLink: document.getElementById('register-link'),
+    navApprove: document.getElementById('nav-approve'),
   };
 
   // --- สลับหน้า ---
@@ -43,8 +45,10 @@
 
   function showError(msg) {
     el.errorMsg.textContent = msg;
-    // ถ้ารู้ userId แล้ว ให้แสดงไว้ก๊อปไปลงทะเบียน (ช่วยตอนตั้งระบบครั้งแรก)
-    if (userId) {
+    // ยังไม่ได้ลงทะเบียน -> โชว์ปุ่มลงทะเบียน + user id (ช่วยตอนตั้งระบบ)
+    var notRegistered = msg && msg.indexOf('ลงทะเบียน') >= 0;
+    el.registerLink.classList.toggle('hidden', !notRegistered);
+    if (userId && notRegistered) {
       el.uidValue.textContent = userId;
       el.uidBox.classList.remove('hidden');
     } else {
@@ -121,6 +125,7 @@
   function renderStatus() {
     el.empName.textContent = status.name;
     el.empDept.textContent = status.department || '';
+    el.navApprove.classList.toggle('hidden', !status.is_approver);
 
     var html = '';
     var inRec = status.records.filter(function (r) { return r.type === 'check_in'; })[0];
