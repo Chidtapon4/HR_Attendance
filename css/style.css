@@ -33,6 +33,20 @@ body {
 
 .hidden { display: none !important; }
 
+/* ซ่อนแต่ยังกดได้ — ใช้กับ input file ของกล้อง
+   (display:none ทำให้บางมือถือเปิดกล้องไม่ได้) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .state {
   display: flex;
   flex-direction: column;

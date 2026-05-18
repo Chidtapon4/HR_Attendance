@@ -130,7 +130,7 @@
     btn.classList.remove('btn-out');
     btn.disabled = false;
     if (status.next_action === 'check_in') {
-      btn.textContent = 'ลงเวลาเข้างาน';
+      btn.textContent = 'ลงเวลา';
     } else if (status.next_action === 'check_out') {
       btn.textContent = 'ลงเวลาออกงาน';
       btn.classList.add('btn-out');
@@ -142,7 +142,7 @@
   }
 
   function summaryRow(label, rec) {
-    var val = '—', cls = '';
+    var val = 'ยังไม่ลงเวลา', cls = '';
     if (rec) {
       var time = String(rec.timestamp).split(' ')[1] || rec.timestamp;
       val = time;
