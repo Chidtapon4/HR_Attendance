@@ -147,31 +147,32 @@
     }
   }
 
-  function downloadCsv() {
-    if (!reportRows || !reportRows.length) return;
-    var header = ['รหัสพนักงาน', 'ชื่อ', 'แผนก', 'วันมาทำงาน',
-      'จำนวนครั้งสาย', 'นาทีสายรวม', 'วันลา', 'ชั่วโมง OT'];
-    var lines = [header.join(',')];
-    reportRows.forEach(function (r) {
-      lines.push([
-        r.emp_id, csvCell(r.name), csvCell(r.department),
-        r.present_days, r.late_count, r.late_minutes,
-        r.leave_days, r.ot_hours,
-      ].join(','));
-    });
-    // ﻿ = BOM ให้ Excel อ่านภาษาไทยถูก
-    var blob = new Blob(['﻿' + lines.join('\r\n')],
-      { type: 'text/csv;charset=utf-8;' });
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'report-' + reportMonth + '.csv';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+  // สร้างไฟล์ CSV ที่ฝั่ง backend (เก็บใน Drive) แล้วเปิดลิงก์
+  // — ดาวน์โหลดในแอป LINE ตรงๆ ไม่ได้ จึงต้องผ่าน Drive
+  async function exportCsv() {
+    if (!reportMonth) return;
+    el.reportCsv.disabled = true;
+    el.statusLine.textContent = 'กำลังสร้างไฟล์ CSV...';
+    try {
+      var res = await API.call('exportReportCsv', {
+        line_user_id: userId, month: reportMonth,
+      });
+      el.statusLine.textContent = 'เปิดไฟล์ ' + res.name + ' แล้ว';
+      openUrl(res.url);
+    } catch (e) {
+      el.statusLine.textContent = '';
+      alert(e.message || 'สร้างไฟล์ไม่สำเร็จ');
+    } finally {
+      el.reportCsv.disabled = false;
+    }
   }
-  function csvCell(v) {
-    var s = String(v == null ? '' : v);
-    return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+
+  function openUrl(url) {
+    if (typeof liff !== 'undefined' && liff.isInClient && liff.isInClient()) {
+      liff.openWindow({ url: url, external: true });
+    } else {
+      window.open(url, '_blank');
+    }
   }
 
   // ===== แท็บ จัดการพนักงาน =====
@@ -314,7 +315,7 @@
 
   el.dashRefresh.addEventListener('click', loadDashboard);
   el.reportLoad.addEventListener('click', loadReport);
-  el.reportCsv.addEventListener('click', downloadCsv);
+  el.reportCsv.addEventListener('click', exportCsv);
   el.manageRefresh.addEventListener('click', function () {
     loaded.manage = false;
     loadManage();
