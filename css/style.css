@@ -273,6 +273,57 @@ body {
   color: var(--text);
 }
 
+/* การ์ดกว้างพิเศษ (หน้า admin) */
+.card-wide { max-width: 560px; }
+
+/* การ์ดสถิติ Dashboard */
+.stat-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 8px;
+}
+.stat {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 12px 8px;
+  text-align: center;
+}
+.stat-num { font-size: 24px; font-weight: 700; }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.stat-ok .stat-num { color: var(--primary-dark); }
+.stat-warn .stat-num { color: #b07400; }
+.stat-bad .stat-num { color: var(--bad); }
+
+.badge-neutral { background: #e3e6ea; color: #555; }
+
+/* ตารางรายงาน */
+.report-cap { font-size: 12px; color: var(--muted); margin: 8px 0; }
+.table-wrap { width: 100%; overflow-x: auto; }
+table.rpt {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+table.rpt th, table.rpt td {
+  border: 1px solid #e3e6ea;
+  padding: 7px 8px;
+  text-align: center;
+}
+table.rpt th { background: var(--bg); }
+table.rpt td.t-name { text-align: left; white-space: nowrap; }
+
+/* ฟอร์มแก้ไขพนักงาน */
+.emp-head { cursor: pointer; }
+.emp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #dde0e4;
+}
+
 /* สปินเนอร์ */
 .spinner {
   width: 36px; height: 36px;

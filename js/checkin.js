@@ -31,6 +31,7 @@
     selfieInput: document.getElementById('selfie-input'),
     registerLink: document.getElementById('register-link'),
     navApprove: document.getElementById('nav-approve'),
+    navAdmin: document.getElementById('nav-admin'),
   };
 
   // --- สลับหน้า ---
@@ -117,6 +118,7 @@
     el.empName.textContent = status.name;
     el.empDept.textContent = status.department || '';
     el.navApprove.classList.toggle('hidden', !status.is_approver);
+    el.navAdmin.classList.toggle('hidden', status.role !== 'hr');
 
     var html = '';
     var inRec = status.records.filter(function (r) { return r.type === 'check_in'; })[0];

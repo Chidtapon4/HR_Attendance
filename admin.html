@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>จัดการระบบ (HR)</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="card card-wide">
+    <section id="loading" class="state">
+      <div class="spinner"></div>
+      <p>กำลังเชื่อมต่อ...</p>
+    </section>
+
+    <section id="error" class="state hidden">
+      <div class="icon-bad">!</div>
+      <p id="error-msg"></p>
+      <button id="retry-btn" class="btn btn-ghost">ลองใหม่</button>
+    </section>
+
+    <section id="main" class="state hidden">
+      <header class="head">
+        <h1>จัดการระบบ</h1>
+        <p class="dept">สำหรับ HR</p>
+      </header>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="dash">วันนี้</button>
+        <button class="tab" data-tab="report">รายงานเดือน</button>
+        <button class="tab" data-tab="manage">พนักงาน</button>
+      </div>
+
+      <!-- แท็บ Dashboard -->
+      <div id="tab-dash" class="tab-panel">
+        <div id="dash-summary" class="stat-grid"></div>
+        <h2 class="section-title">รายชื่อพนักงานวันนี้</h2>
+        <div id="dash-list" class="req-list"></div>
+        <button id="dash-refresh" class="btn btn-ghost">รีเฟรช</button>
+      </div>
+
+      <!-- แท็บ รายงานเดือน -->
+      <div id="tab-report" class="tab-panel hidden">
+        <label class="field">
+          <span>เลือกเดือน</span>
+          <input type="month" id="report-month" />
+        </label>
+        <button id="report-load" class="btn btn-primary">ดูรายงาน</button>
+        <div id="report-result"></div>
+        <button id="report-csv" class="btn btn-ghost hidden">ดาวน์โหลด CSV</button>
+      </div>
+
+      <!-- แท็บ จัดการพนักงาน -->
+      <div id="tab-manage" class="tab-panel hidden">
+        <p class="dept">กดที่ชื่อพนักงานเพื่อแก้ไขข้อมูล</p>
+        <div id="manage-list" class="req-list"></div>
+        <button id="manage-refresh" class="btn btn-ghost">รีเฟรช</button>
+      </div>
+
+      <p id="status-line" class="status-line"></p>
+    </section>
+  </main>
+
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/liff-init.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
