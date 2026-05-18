@@ -169,17 +169,19 @@
     try {
       var payload = { line_user_id: userId, device_info: navigator.userAgent };
 
+      // เซลฟี่ต้องมาก่อน GPS — กล้องต้องเปิดทันทีในจังหวะที่กดปุ่ม
+      // (ถ้าขอ GPS ก่อน จะมี await คั่น ทำให้มือถือบล็อกการเปิดกล้อง)
+      if (status.require_selfie) {
+        el.statusLine.textContent = 'กรุณาถ่ายเซลฟี่...';
+        payload.photo = await getSelfie();
+      }
+
       if (status.require_gps) {
         el.statusLine.textContent = 'กำลังระบุตำแหน่ง...';
         var loc = await getLocation();
         payload.lat = loc.lat;
         payload.lng = loc.lng;
         payload.gps_accuracy = loc.gps_accuracy;
-      }
-
-      if (status.require_selfie) {
-        el.statusLine.textContent = 'กรุณาถ่ายเซลฟี่...';
-        payload.photo = await getSelfie();
       }
 
       el.statusLine.textContent = 'กำลังบันทึก...';
