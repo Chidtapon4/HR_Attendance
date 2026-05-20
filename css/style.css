@@ -253,6 +253,35 @@ body {
   padding: 12px;
 }
 
+/* ช่องยินยอม PDPA */
+.consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--bg);
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.consent input[type="checkbox"] {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ป้ายเตือนความผิดปกติ (กันโกง) */
+.flag-warn {
+  display: inline-block;
+  font-size: 11px;
+  background: #fff1d6;
+  color: #b07400;
+  padding: 2px 7px;
+  border-radius: 10px;
+  margin-left: 6px;
+}
+
 /* เมนูนำทาง */
 .nav {
   width: 100%;

@@ -36,6 +36,10 @@
     leave: { text: 'ลา', cls: 'badge-neutral' },
   };
   var ROLE_TH = { employee: 'พนักงาน', manager: 'หัวหน้า', hr: 'HR' };
+  var FLAG_TH = {
+    low_accuracy: 'GPS แม่นยำต่ำ',
+    device_change: 'เปลี่ยนเครื่อง',
+  };
 
   function show(name) {
     ['loading', 'error', 'main'].forEach(function (s) {
@@ -89,9 +93,17 @@
               (e.late_minutes ? ' (สาย ' + e.late_minutes + ' น.)' : '') +
               (e.check_out ? ' · ออก ' + e.check_out : '');
           }
+          var flagHtml = '';
+          if (e.flags) {
+            e.flags.split(',').forEach(function (f) {
+              if (!f) return;
+              flagHtml += '<span class="flag-warn">⚠ ' +
+                escapeHtml(FLAG_TH[f] || f) + '</span>';
+            });
+          }
           return '<div class="req-item">' +
             '<div class="req-top"><span class="req-title">' +
-            escapeHtml(e.name) + '</span>' +
+            escapeHtml(e.name) + flagHtml + '</span>' +
             '<span class="badge ' + st.cls + '">' + st.text + '</span></div>' +
             '<div class="req-sub">' + escapeHtml(e.department || '-') +
             (time ? ' · ' + time : '') + '</div></div>';

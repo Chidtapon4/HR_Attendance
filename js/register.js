@@ -16,6 +16,7 @@
     name: document.getElementById('f-name'),
     dept: document.getElementById('f-dept'),
     phone: document.getElementById('f-phone'),
+    consent: document.getElementById('f-consent'),
     submitBtn: document.getElementById('submit-btn'),
     statusLine: document.getElementById('status-line'),
     success: document.getElementById('success'),
@@ -35,6 +36,10 @@
       alert('กรุณากรอกชื่อ-นามสกุล');
       return;
     }
+    if (!el.consent.checked) {
+      alert('กรุณายอมรับข้อตกลง PDPA ก่อนส่งคำขอ');
+      return;
+    }
     busy = true;
     el.submitBtn.disabled = true;
     el.statusLine.textContent = 'กำลังส่ง...';
@@ -44,6 +49,7 @@
         name: el.name.value.trim(),
         department: el.dept.value.trim(),
         phone: el.phone.value.trim(),
+        consent: true,
       });
       el.successDetail.textContent = 'รหัสพนักงานของคุณคือ ' + res.emp_id +
         '\nกรุณารอ HR อนุมัติ แล้วจึงเริ่มลงเวลาได้';
